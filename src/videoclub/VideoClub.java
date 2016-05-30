@@ -14,10 +14,13 @@ import java.util.Scanner;
 public class VideoClub {
 
     static Scanner in = new Scanner(System.in);
-    static Videojuego videojuego;
-    static Pelicula pelicula;
+    static Videojuego videojuego = new Videojuego();
+    static Pelicula pelicula = new Pelicula();
     
     public static void main(String[] args) {
+        
+        pelicula.crearPeliculas();
+        videojuego.crearVideojuegos();
         principal();
     }
     public static void principal()  {
@@ -62,7 +65,7 @@ public class VideoClub {
         System.out.println("C/c: Mostrar cantidad de películas rentadas");
         System.out.println("X/x: Mostrar cantidad de videojuegos para Xbox");
         System.out.println("U/u: Terminar programa");
-            int opcion = in.nextInt();
+            char opcion = in.next(".").charAt(0);
         switch(opcion)  {
             case 'T':
                 mostrarProductos();
@@ -94,7 +97,7 @@ public class VideoClub {
         System.out.println("Cuántas "+producto+"s quiere agregar?");
         int cantidad = in.nextInt();
         for(int i = 1; i <= cantidad; i++)  {
-            System.out.println(producto + i);
+            System.out.println(producto + ": "+ i);
             System.out.println("¿Cómo se llama?");
             String nombre = in.next();
             System.out.println("¿Qué precio tendrá?");
@@ -109,11 +112,11 @@ public class VideoClub {
                     int opcionGenero = in.nextInt();
                     String genero = obtenerGenero(opcionGenero);
                 System.out.println("¿De qué año es?");
-                    String año = in.nextLine();
+                    String año = in.next();
                 
                 System.out.println(nombre + costoRenta + genero + año);
                 
-         //       pelicula = new Pelicula(nombre, costoRenta, '1', 0, genero, año);
+                pelicula.agregar(new Pelicula(nombre, costoRenta, '1', 0, genero, año));
             } else if(producto.equals("videojuego"))    {
                 System.out.println("Seleccione el estilo: ");
                 System.out.println("1) Acción");
@@ -129,20 +132,27 @@ public class VideoClub {
                     String plataforma = obtenerPlataforma(opcionPlataforma);
                 
                 System.out.println(nombre + " " + costoRenta + " " + estilo + " " + plataforma);
-           //     videojuego = new Videojuego(nombre, costoRenta, '1', 0, genero, año);
+                videojuego.agregar(new Videojuego(nombre, costoRenta, '1', 0, estilo, plataforma));
             }
 
         }
         principal();
     }
     public static void mostrarProductos()   {
-        
+        mostrarPeliculas();
+        mostrarVideojuegos();
     }
     public static void mostrarPeliculas()   {
-        
+        System.out.println("Películas: ");
+        for(Pelicula x : pelicula.getListaPeliculas())   {
+            System.out.println(x.toString());
+        }
     }
     public static void mostrarVideojuegos() {
-        
+        System.out.println("Videojuegos: ");
+        for(Videojuego x : videojuego.getListaJuegos()) {
+            System.out.println(x.toString());
+        }
     }
     public static void checarEstatusPelicula()  {
         

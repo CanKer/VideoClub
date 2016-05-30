@@ -17,14 +17,14 @@ public class Videojuego extends Producto{
     private ArrayList<Videojuego> listaJuegos = new ArrayList<Videojuego>();
 
     
-    
+    public Videojuego() {}
     public Videojuego(String nombre, double costoRenta, char rentado, int dias, String estilo, String plataforma) {
         super(nombre, costoRenta, rentado, dias);
         this.estilo     = estilo;
         this.plataforma = plataforma;
     }
     
-    private void crearVideojuegos() {
+    public void crearVideojuegos() {
         listaJuegos.add(new Videojuego("World of Warcraft", 20.30, '0', 0, "Aventuras", "Xbox"));
         listaJuegos.add(new Videojuego("The Witcher", 50.50, '1', 5, "Aventuras", "PlayStation"));
         listaJuegos.add(new Videojuego("Star Wars", 200.30, '0', 0, "Aventuras", "Wii"));
@@ -32,7 +32,9 @@ public class Videojuego extends Producto{
         listaJuegos.add(new Videojuego("Half Life", 20.90, '0', 0, "Aventuras", "Xbox"));
     }
 
-
+    public void agregar(Videojuego e)   {
+        listaJuegos.add(e);
+    }
     public String getEstilo() {
         return estilo;
     }
@@ -62,6 +64,10 @@ public class Videojuego extends Producto{
         this.listaJuegos = listaJuegos;
     }
     
+    @Override
+    public String toString()    {
+        return nombre;
+    }
     
     
 }

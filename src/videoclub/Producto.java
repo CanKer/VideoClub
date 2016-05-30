@@ -12,11 +12,12 @@ package videoclub;
  */
 public class Producto {
     
-    private String    nombre;
-    private double     costoRenta;
-    private char      rentado;
-    private int       dias;
+    protected String    nombre;
+    protected double     costoRenta;
+    protected char      rentado;
+    protected int       dias;
     
+    public Producto()   {}
     public Producto(String nombre, double costoRenta, char rentado, int dias) {
         this.nombre         = nombre;
         this.costoRenta     = costoRenta;
