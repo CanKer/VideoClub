@@ -32,44 +32,32 @@ public class Videojuego extends Producto{
         listaJuegos.add(new Videojuego("Half Life", 20.90, '0', 0, "Aventuras", "Xbox"));
     }
 
-    /**
-     * @return the estilo
-     */
+
     public String getEstilo() {
         return estilo;
     }
 
-    /**
-     * @param estilo the estilo to set
-     */
+
     public void setEstilo(String estilo) {
         this.estilo = estilo;
     }
 
-    /**
-     * @return the plataforma
-     */
+
     public String getPlataforma() {
         return plataforma;
     }
 
-    /**
-     * @param plataforma the plataforma to set
-     */
+
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
 
-    /**
-     * @return the listaJuegos
-     */
+
     public ArrayList<Videojuego> getListaJuegos() {
         return listaJuegos;
     }
 
-    /**
-     * @param listaJuegos the listaJuegos to set
-     */
+
     public void setListaJuegos(ArrayList<Videojuego> listaJuegos) {
         this.listaJuegos = listaJuegos;
     }
