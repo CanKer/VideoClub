@@ -68,9 +68,11 @@ public class VideoClub {
             char opcion = in.next(".").charAt(0);
         switch(opcion)  {
             case 'T':
+            case 't':
                 mostrarProductos();
                 break;
             case 'P':
+            case 'p':
                 mostrarPeliculas();
                 break;
             case 'V':
@@ -141,30 +143,50 @@ public class VideoClub {
     public static void mostrarProductos()   {
         mostrarPeliculas();
         mostrarVideojuegos();
+        
+        principal();
     }
     public static void mostrarPeliculas()   {
         System.out.println("Películas: ");
         for(Pelicula x : pelicula.getListaPeliculas())   {
             System.out.println(x.toString());
         }
+        
+        principal();
     }
     public static void mostrarVideojuegos() {
         System.out.println("Videojuegos: ");
         for(Videojuego x : videojuego.getListaJuegos()) {
             System.out.println(x.toString());
         }
+        
+        principal();
     }
     public static void checarEstatusPelicula()  {
+        in.nextLine();
+        System.out.println("¿Cuál es el nombre de la película a buscar?");
+        String nombre = in.nextLine();
+        System.out.println(pelicula.status(nombre));
         
+        principal();
     }
     public static void checarEstatusVideojuego()    {
+        in.nextLine();
+        System.out.println("¿Cuál es el nombre del videojuego a buscar?");
+        String nombre = in.nextLine();
+        System.out.println(videojuego.status(nombre));
         
+        principal();
     }
     public static void mostrarPeliculasRentadas()   {
+        System.out.println(pelicula.rentadas());
         
+        principal();
     }
     public static void mostrarVideojuegosXbox() {
+        System.out.println("Existen " + videojuego.conXbox() + " videojuegos para Xbox");
         
+        principal();
     }
     public static String obtenerGenero(int opcion)  {
         String genero = null;

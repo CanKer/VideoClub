@@ -35,6 +35,22 @@ public class Videojuego extends Producto{
     public void agregar(Videojuego e)   {
         listaJuegos.add(e);
     }
+    
+    public String status(String nombre) {
+        String respuesta = null;
+        
+        for(Videojuego videojuego : listaJuegos) {
+            if(videojuego.getNombre().equals(nombre))
+
+            if(nombre.equals(videojuego.getNombre()))   {
+                respuesta  = (videojuego.getNombre().contains(nombre) && videojuego.getRentado() == '1') ? "El videojuego "+ nombre +" está rentado" : "El videojuego " + nombre + " no está rentada";
+            } else {
+                respuesta = "El videojuego "+ nombre +" no existe";
+            } 
+        }
+        return respuesta;
+    }
+    
     public String getEstilo() {
         return estilo;
     }
@@ -62,6 +78,14 @@ public class Videojuego extends Producto{
 
     public void setListaJuegos(ArrayList<Videojuego> listaJuegos) {
         this.listaJuegos = listaJuegos;
+    }
+    
+        public int conXbox()  {
+        int contador = 0;
+        for(Videojuego videojuego : listaJuegos)   {
+            contador = (videojuego.getPlataforma().equalsIgnoreCase("Xbox")) ? contador + 1 : contador;
+        }
+        return contador;
     }
     
     @Override
