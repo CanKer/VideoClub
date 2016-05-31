@@ -255,8 +255,15 @@ public class VideoClub {
     }
 
     public static void mostrarProductos() {
-        mostrarVideojuegos();
-        mostrarPeliculas();
+        System.out.println("Videojuegos: ");
+        for (Videojuego x : videojuego.getListaJuegos()) {
+            System.out.println(x.toString());
+        }
+        
+        System.out.println("Películas: ");
+        for (Pelicula x : pelicula.getListaPeliculas()) {
+            System.out.println(x.toString());
+        }
 
         administrativo();
     }
