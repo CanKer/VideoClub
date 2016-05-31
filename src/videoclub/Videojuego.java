@@ -6,6 +6,7 @@
 package videoclub;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class Videojuego extends Producto{
     
     private String estilo, plataforma;
-    private ArrayList<Videojuego> listaJuegos = new ArrayList<Videojuego>();
+    private List<Videojuego> listaJuegos = new ArrayList<Videojuego>();
 
     
     public Videojuego() {}
@@ -36,16 +37,15 @@ public class Videojuego extends Producto{
         listaJuegos.add(e);
     }
     
-    public String status(String nombre) {
-        String respuesta = null;
+    
+    public Videojuego status(String nombre) {
+        Videojuego respuesta = null;
         
         for(Videojuego videojuego : listaJuegos) {
             if(videojuego.getNombre().equals(nombre))
 
             if(nombre.equals(videojuego.getNombre()))   {
-                respuesta  = (videojuego.getNombre().contains(nombre) && videojuego.getRentado() == '1') ? "El videojuego "+ nombre +" está rentado" : "El videojuego " + nombre + " no está rentada";
-            } else {
-                respuesta = "El videojuego "+ nombre +" no existe";
+                respuesta  = videojuego;
             } 
         }
         return respuesta;
@@ -71,7 +71,7 @@ public class Videojuego extends Producto{
     }
 
 
-    public ArrayList<Videojuego> getListaJuegos() {
+    public List<Videojuego> getListaJuegos() {
         return listaJuegos;
     }
 
@@ -88,10 +88,10 @@ public class Videojuego extends Producto{
         return contador;
     }
     
-    @Override
-    public String toString()    {
+  //  @Override
+/*    public String toString()    {
         return nombre;
-    }
+    } */
     
     
 }

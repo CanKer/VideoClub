@@ -33,21 +33,19 @@ public class Pelicula extends Producto{
     public void agregar(Pelicula p) {
         listaPeliculas.add(p);
     }
-    
-    public String status(String nombre) {
-        String respuesta = null;
+    public Pelicula status(String nombre) {
+        Pelicula respuesta = null;
         
         for(Pelicula pelicula : listaPeliculas) {
             if(pelicula.getNombre().equals(nombre))
 
             if(nombre.equals(pelicula.getNombre()))   {
-                respuesta  = (pelicula.getNombre().contains(nombre) && pelicula.getRentado() == '1') ? "La película "+ nombre +" está rentada" : "La películas " + nombre + " no está rentada";
-            } else {
-                respuesta = "La película "+ nombre +" no existe";
+                respuesta  = pelicula;
             } 
         }
         return respuesta;
-    }
+    }    
+
     
     public String getGenero()   {
         return genero;

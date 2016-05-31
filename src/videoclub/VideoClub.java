@@ -26,8 +26,9 @@ public class VideoClub {
     public static void principal()  {
         System.out.println("Seleccione la opción deseada: ");
         System.out.println("1) Agregar productos");
-        System.out.println("2) Mostrar datos");
-        System.out.println("3) Salir");
+        System.out.println("2) Rentar productos");
+        System.out.println("3) Mostrar datos");
+        System.out.println("4) Salir");
             int opcion = in.nextInt();
         
         switch(opcion)  {
@@ -35,7 +36,13 @@ public class VideoClub {
                 agregarProductos();
                 break;
             case 2:
+                rentarProductos();
+                break;
+            case 3:
                 administrativo();
+                break;
+            case 4:
+                System.exit(0);
                 break;
         }
     }
@@ -53,6 +60,21 @@ public class VideoClub {
                 break;
         }
        
+    }
+    
+    public static void rentarProductos()    {
+        System.out.println("¿Qué desea rentar?");
+        System.out.println("1) Videojuegos");
+        System.out.println("2) Películas");
+            int opcion = in.nextInt();
+        switch(opcion) {
+            case 1:
+                rentarProducto("videojuego");
+                break;
+            case 2:
+                rentarProducto("pelicula");
+                break;
+        }
     }
     
     public static void administrativo() {
@@ -139,6 +161,43 @@ public class VideoClub {
 
         }
         principal();
+    }
+    public static void rentarProducto(String producto)  {
+        Videojuego juego = null;
+        Pelicula peli = null;
+            in.nextLine();
+        System.out.println("¿Cuál es el nombre de su producto?");
+            String nombre = in.nextLine();
+        System.out.println("¿Cuántos días quiere rentarlo?");
+            int dias = in.nextInt();
+            if(producto.equals("videojuego"))   {
+                juego = videojuego.status(nombre);
+                    if(juego != null)   {
+                        if(juego.getRentado() != '1')   {
+                            juego.setRentado('1');
+                            juego.setDias(dias);
+                            System.out.println("Videojuego "+juego.getNombre()+" rentado exitosamente");
+                        }   else    {
+                            System.out.println("Videojuego ocupado");
+                            }
+                    } else {
+                        System.out.println("El videojuego no existe");
+                     }
+            }   else if(producto.equals("pelicula"))    {
+                    peli = pelicula.status(nombre);
+                        if(peli != null)    {
+                            if(peli.getRentado() != '1')    {
+                                peli.setRentado('1');
+                                peli.setDias(dias);
+                                System.out.println("Pelicula "+peli.getNombre()+" rentada exitosamente");
+                            } else  {
+                                System.out.println("Película ocupada");
+                            }
+                        } else {
+                            System.out.println("La película no existe");
+                        }
+                    
+            }
     }
     public static void mostrarProductos()   {
         mostrarPeliculas();
