@@ -133,16 +133,15 @@ public class VideoClub {
         switch (opcion) {
             case 'T':
             case 't':
-                mostrarPeliculas();
-                mostrarVideojuegos();
+                mostrarProductos();
                 break;
             case 'P':
             case 'p':
-                mostrarPeliculas();
+                mostrarPeliculas(true);
                 break;
             case 'V':
             case 'v':
-                mostrarVideojuegos();
+                mostrarVideojuegos(true);
                 break;
             case 'S':
             case 's':
@@ -255,35 +254,33 @@ public class VideoClub {
     }
 
     public static void mostrarProductos() {
-        System.out.println("Videojuegos: ");
-        for (Videojuego x : videojuego.getListaJuegos()) {
+        mostrarPeliculas(false);
+        mostrarVideojuegos(false);
+
+        administrativo();
+    }
+
+    public static void mostrarPeliculas(boolean opcion) {
+        System.out.println("Películas: ");
+        for (Pelicula x : pelicula.getListaPeliculas()) {
             System.out.println(x.toString());
         }
         
-        System.out.println("Películas: ");
-        for (Pelicula x : pelicula.getListaPeliculas()) {
-            System.out.println(x.toString());
+        if(opcion)  {
+            administrativo();
         }
-
-        administrativo();
+        
     }
 
-    public static void mostrarPeliculas() {
-        System.out.println("Películas: ");
-        for (Pelicula x : pelicula.getListaPeliculas()) {
-            System.out.println(x.toString());
-        }
-
-        administrativo();
-    }
-
-    public static void mostrarVideojuegos() {
+    public static void mostrarVideojuegos(boolean opcion) {
         System.out.println("Videojuegos: ");
         for (Videojuego x : videojuego.getListaJuegos()) {
             System.out.println(x.toString());
         }
 
-        administrativo();
+        if(opcion)  {
+            administrativo();
+        }
     }
 
     public static void checarEstatusPelicula() {
