@@ -31,9 +31,11 @@ public class Pelicula extends Producto{
         listaPeliculas.add(new Pelicula("Batman v Superman", 10.30, '0', 2, "Accion", "2016"));
         listaPeliculas.add(new Pelicula("Thor", 10.30, '1', 3, "Accion", "2013"));
     }
+    
     public void agregar(Pelicula p) {
         listaPeliculas.add(p);
     }
+    
     public Pelicula status(String nombre) {
         Pelicula respuesta = null;
         
@@ -47,7 +49,6 @@ public class Pelicula extends Producto{
         return respuesta;
     }    
 
-    
     public String getGenero()   {
         return genero;
     }

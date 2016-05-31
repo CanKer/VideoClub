@@ -19,8 +19,8 @@ public class VideoClub {
     
     public static void main(String[] args) {
         
-        pelicula.crearPeliculas();
-        videojuego.crearVideojuegos();
+        pelicula.crearPeliculas();          //Creamos películas muestra
+        videojuego.crearVideojuegos();      //Creamos videojuegos muestra
         principal();
     }
     public static void principal()  {
@@ -44,6 +44,10 @@ public class VideoClub {
             case 4:
                 System.exit(0);
                 break;
+            default:
+                System.out.println("Opción incorrecta");
+                principal();
+                break;
         }
     }
     public static void agregarProductos()    {
@@ -57,6 +61,10 @@ public class VideoClub {
                 break;
             case 2:
                 agregarProducto("pelicula");
+                break;
+            default:
+                System.out.println("Opción incorrecta");
+                agregarProductos();
                 break;
         }
     }
@@ -72,6 +80,10 @@ public class VideoClub {
                 break;
             case 2:
                 rentarProducto("pelicula");
+                break;
+            default:
+                System.out.println("Opción incorrecta");
+                rentarProductos();
                 break;
         }
     }
@@ -124,6 +136,10 @@ public class VideoClub {
             case 'u':
                 System.exit(0);
                 break;
+            default:
+                System.out.println("Opción incorrecta");
+                administrativo();
+                break;
         }
     }
 
@@ -152,19 +168,16 @@ public class VideoClub {
                 
                 pelicula.agregar(new Pelicula(nombre, costoRenta, '1', 0, genero, año));
             } else if(producto.equals("videojuego"))    {
-                System.out.println("Seleccione el estilo: ");
-                System.out.println("1) Acción");
-                System.out.println("2) Deportes");
-                System.out.println("3) Aventura");
-                    int opcionEstilo = in.nextInt();
-                    String estilo = obtenerEstilo(opcionEstilo);
-                System.out.println("¿Para qué plataforma es?");
-                System.out.println("1) Xbox");
-                System.out.println("2) Playstation");
-                System.out.println("3) Wii");
-                    int opcionPlataforma = in.nextInt();
-                    String plataforma = obtenerPlataforma(opcionPlataforma);
+                String estilo = null;
+                do{
+                    estilo = seleccionarEstilo();
+                } while (estilo == null);
                 
+                String plataforma = null;
+                do {
+                    plataforma = seleccionarPlataforma();
+                } while (plataforma == null);
+               
                 System.out.println(nombre + " " + costoRenta + " " + estilo + " " + plataforma);
                 videojuego.agregar(new Videojuego(nombre, costoRenta, '1', 0, estilo, plataforma));
             }
@@ -253,10 +266,21 @@ public class VideoClub {
         administrativo();
     }
     public static void checarEstatusVideojuego()    {
+        Videojuego juego;
         in.nextLine();
         System.out.println("¿Cuál es el nombre del videojuego a buscar?");
         String nombre = in.nextLine();
-        System.out.println(videojuego.status(nombre));
+        juego = videojuego.status(nombre);
+        if(juego != null) {
+            if(juego.getRentado() != '0')    {
+                System.out.println("El videojuego "+juego.getNombre()+" no está disponible");
+            }   else    {
+                System.out.println("El videojuego "+juego.getNombre()+" está disponible");
+            }
+            
+        }   else    {
+            System.out.println("No existe");
+        }
         
         administrativo();
     }
@@ -287,41 +311,68 @@ public class VideoClub {
                 break;
             case 5:
                 genero = "Aventura";
-                break;                
+                break;  
+            default:
+                System.out.println("Opción incorrecta");
+                obtenerGenero(opcion);
+                break;
         }
         
         return genero;
     }
-    public static String obtenerEstilo(int opcion)  {
-        String estilo = null;
-        switch(opcion)  {
-            case 1:
-                estilo = "Acción";
-                break;
-            case 2:
-                estilo = "Deportes";
-                break;
-            case 3:
-                estilo = "Aventura";
-                break;                
-        }
-        
-        return estilo;
+
+    public static void listaEstilos()   {
+        System.out.println("Seleccione el estilo: ");
+        System.out.println("1) Acción");
+        System.out.println("2) Deportes");
+        System.out.println("3) Aventura");
     }
-    public static String obtenerPlataforma(int opcion)  {
-        String plataforma = null;
+    public static void listaPlataformas()   {
+        System.out.println("¿Para qué plataforma es?");
+        System.out.println("1) Xbox");
+        System.out.println("2) Playstation");
+        System.out.println("3) Wii");   
+    }
+    public static String seleccionarEstilo()  {
+        listaEstilos();
+        
+            while(!in.hasNextInt()) {
+                System.out.println("No se pueden ingresar letras o símbolos");
+                listaEstilos();
+                in.next();
+            } 
+            int opcion = in.nextInt();
         switch(opcion)  {
             case 1:
-                plataforma = "Xbox";
-                break;
+                return  "Acción";
             case 2:
-                plataforma = "Playstation";
-                break;
+                return  "Deportes";
             case 3:
-                plataforma = "Wii";
-                break;
+                return  "Aventura";
+            default:
+                System.out.println("Opción incorrecta");
         }
-        return plataforma;
+        return null;
+    }
+    public static String seleccionarPlataforma()    {
+        listaPlataformas();
+            while(!in.hasNextInt()) {
+                System.out.println("No se pueden ingresar letras o símbolos");
+                listaPlataformas();
+                in.next();
+            }
+            int opcion = in.nextInt();
+        switch(opcion)  {
+            case 1:
+                return "Xbox";
+            case 2:
+                return "Playstation";
+            case 3:
+                return "Wii";
+            default:
+                System.out.println("Opción incorrecta");
+        }
+        return null;
     }
        
 }

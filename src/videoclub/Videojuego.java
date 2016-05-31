@@ -36,7 +36,6 @@ public class Videojuego extends Producto{
         listaJuegos.add(e);
     }
     
-    
     public Videojuego status(String nombre) {
         Videojuego respuesta = null;
         
@@ -64,16 +63,13 @@ public class Videojuego extends Producto{
         return plataforma;
     }
 
-
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
 
-
     public List<Videojuego> getListaJuegos() {
         return listaJuegos;
     }
-
 
     public void setListaJuegos(ArrayList<Videojuego> listaJuegos) {
         this.listaJuegos = listaJuegos;
