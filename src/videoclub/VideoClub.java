@@ -153,14 +153,11 @@ public class VideoClub {
             System.out.println("¿Qué precio tendrá?");
                 double costoRenta = in.nextDouble();
             if(producto.equals("pelicula")) {
-                System.out.println("Seleccione el género: ");
-                System.out.println("1) Acción");
-                System.out.println("2) Fantasía");
-                System.out.println("3) Drama");
-                System.out.println("4) Comedia");
-                System.out.println("5) Aventura");
-                    int opcionGenero = in.nextInt();
-                    String genero = obtenerGenero(opcionGenero);
+                String genero = null;
+                do {
+                    genero = seleccionarGenero();
+                } while (genero == null);
+                
                 System.out.println("¿De qué año es?");
                     String año = in.next();
                 
@@ -294,32 +291,6 @@ public class VideoClub {
         
         administrativo();
     }
-    public static String obtenerGenero(int opcion)  {
-        String genero = null;
-        switch(opcion)  {
-            case 1:
-                genero = "Acción";
-                break;
-            case 2:
-                genero = "Fantasía";
-                break;
-            case 3:
-                genero = "Drama";
-                break;
-            case 4:
-                genero = "Comedia";
-                break;
-            case 5:
-                genero = "Aventura";
-                break;  
-            default:
-                System.out.println("Opción incorrecta");
-                obtenerGenero(opcion);
-                break;
-        }
-        
-        return genero;
-    }
 
     public static void listaEstilos()   {
         System.out.println("Seleccione el estilo: ");
@@ -327,11 +298,21 @@ public class VideoClub {
         System.out.println("2) Deportes");
         System.out.println("3) Aventura");
     }
+    
     public static void listaPlataformas()   {
         System.out.println("¿Para qué plataforma es?");
         System.out.println("1) Xbox");
         System.out.println("2) Playstation");
         System.out.println("3) Wii");   
+    }
+    
+    public static void listaGeneros()   {
+        System.out.println("Seleccione el género: ");
+        System.out.println("1) Acción");
+        System.out.println("2) Fantasía");
+        System.out.println("3) Drama");
+        System.out.println("4) Comedia");
+        System.out.println("5) Aventura");  
     }
     public static String seleccionarEstilo()  {
         listaEstilos();
@@ -373,6 +354,35 @@ public class VideoClub {
                 System.out.println("Opción incorrecta");
         }
         return null;
+    }
+    
+    public static String seleccionarGenero()    {
+        listaGeneros();
+        while(!in.hasNextInt()) {
+            System.out.println("No se pueden ingresar letras o símbolos");
+            listaGeneros();
+            in.next();
+        }
+        int opcion = in.nextInt();        
+
+        switch(opcion)  {
+            case 1:
+                return "Acción";
+            case 2:
+                return "Fantasía";
+            case 3:
+                return "Drama";
+            case 4:
+                return "Comedia";
+            case 5:
+                return "Aventura";
+            default:
+                System.out.println("Opción incorrecta");
+        }
+        
+        return null;
+                    
+                    
     }
        
 }
