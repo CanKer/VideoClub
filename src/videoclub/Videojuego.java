@@ -53,11 +53,9 @@ public class Videojuego extends Producto{
         return estilo;
     }
 
-
     public void setEstilo(String estilo) {
         this.estilo = estilo;
     }
-
 
     public String getPlataforma() {
         return plataforma;
@@ -84,9 +82,11 @@ public class Videojuego extends Producto{
     }
     
   //  @Override
-/*    public String toString()    {
-        return nombre;
-    } */
+    public String toString()    {
+        return getNombre() + "\n\tCosto:\t\t" +getCostoRenta(1)+ "\n\tEstado:\t\t" +getRentado()+
+                "\n\tDias:\t\t" +getDias()+ "\n\tEstilo:\t\t" +getEstilo()+
+                "\n\tPlataforma:\t" +getPlataforma();
+    } 
     
     
 }

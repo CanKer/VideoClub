@@ -61,7 +61,6 @@ public class Pelicula extends Producto{
         return año;
     }
 
-
     public void setAño(String año) {
         this.año = año;
     }
@@ -84,7 +83,9 @@ public class Pelicula extends Producto{
     
     @Override
     public String toString()    {
-        return nombre;
+        return getNombre() + "\n\tCosto:\t\t" +getCostoRenta(1)+ "\n\tEstado:\t\t" +getRentado()+
+                "\n\tDias:\t\t" +getDias()+ "\n\tGénero:\t\t" +getGenero()+
+                "\n\tAño:\t\t" +getAño();
     }
     
     
