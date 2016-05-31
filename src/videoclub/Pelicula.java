@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author CanKer
+ * @author Omar
  */
 public class Pelicula extends Producto{
 

@@ -8,7 +8,7 @@ package videoclub;
 
 /**
  *
- * @author CanKer
+ * @author Omar
  */
 public class Producto {
     

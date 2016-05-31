@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author CanKer
+ * @author Omar
  */
 public class VideoClub {
 
