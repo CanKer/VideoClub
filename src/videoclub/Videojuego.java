@@ -15,9 +15,8 @@ import java.util.List;
 public class Videojuego extends Producto{
     
     private String estilo, plataforma;
-    private List<Videojuego> listaJuegos = new ArrayList<Videojuego>();
+    private List<Videojuego> listaJuegos = new ArrayList<>();
 
-    
     public Videojuego() {}
     public Videojuego(String nombre, double costoRenta, char rentado, int dias, String estilo, String plataforma) {
         super(nombre, costoRenta, rentado, dias);
@@ -80,9 +79,9 @@ public class Videojuego extends Producto{
         this.listaJuegos = listaJuegos;
     }
     
-        public int conXbox()  {
+    public int conXbox()  {
         int contador = 0;
-        for(Videojuego videojuego : listaJuegos)   {
+        for(Videojuego videojuego : getListaJuegos())   {
             contador = (videojuego.getPlataforma().equalsIgnoreCase("Xbox")) ? contador + 1 : contador;
         }
         return contador;

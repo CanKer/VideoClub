@@ -59,7 +59,6 @@ public class VideoClub {
                 agregarProducto("pelicula");
                 break;
         }
-       
     }
     
     public static void rentarProductos()    {
@@ -86,6 +85,7 @@ public class VideoClub {
         System.out.println("J/j: Checar estatus de videojuego");
         System.out.println("C/c: Mostrar cantidad de películas rentadas");
         System.out.println("X/x: Mostrar cantidad de videojuegos para Xbox");
+        System.out.println("R/r: Regresar al menú principal");
         System.out.println("U/u: Terminar programa");
             char opcion = in.next(".").charAt(0);
         switch(opcion)  {
@@ -98,21 +98,31 @@ public class VideoClub {
                 mostrarPeliculas();
                 break;
             case 'V':
+            case 'v':
                 mostrarVideojuegos();
                 break;
             case 'S':
+            case 's':
                 checarEstatusPelicula();
                 break;
             case 'J':
+            case 'j':
                 checarEstatusVideojuego();
                 break;
             case 'C':
+            case 'c':
                 mostrarPeliculasRentadas();
                 break;
             case 'X':
+            case 'x':
                 mostrarVideojuegosXbox();
                 break;
+            case 'R':
+            case 'r':
+                principal();
             case 'U':
+            case 'u':
+                System.exit(0);
                 break;
         }
     }
@@ -145,13 +155,13 @@ public class VideoClub {
                 System.out.println("Seleccione el estilo: ");
                 System.out.println("1) Acción");
                 System.out.println("2) Deportes");
-                System.out.println("5) Aventura");
+                System.out.println("3) Aventura");
                     int opcionEstilo = in.nextInt();
                     String estilo = obtenerEstilo(opcionEstilo);
                 System.out.println("¿Para qué plataforma es?");
                 System.out.println("1) Xbox");
                 System.out.println("2) Playstation");
-                System.out.println("5) Wii");
+                System.out.println("3) Wii");
                     int opcionPlataforma = in.nextInt();
                     String plataforma = obtenerPlataforma(opcionPlataforma);
                 
@@ -176,6 +186,7 @@ public class VideoClub {
                         if(juego.getRentado() != '1')   {
                             juego.setRentado('1');
                             juego.setDias(dias);
+                            System.out.println("Favor de pagar $"+juego.getCostoRenta(dias)+"MXN.");
                             System.out.println("Videojuego "+juego.getNombre()+" rentado exitosamente");
                         }   else    {
                             System.out.println("Videojuego ocupado");
@@ -189,6 +200,7 @@ public class VideoClub {
                             if(peli.getRentado() != '1')    {
                                 peli.setRentado('1');
                                 peli.setDias(dias);
+                                System.out.println("Favor de pagar $"+peli.getCostoRenta(dias)+"MXN.");
                                 System.out.println("Pelicula "+peli.getNombre()+" rentada exitosamente");
                             } else  {
                                 System.out.println("Película ocupada");
@@ -196,14 +208,14 @@ public class VideoClub {
                         } else {
                             System.out.println("La película no existe");
                         }
-                    
             }
+        principal();
     }
     public static void mostrarProductos()   {
         mostrarPeliculas();
         mostrarVideojuegos();
         
-        principal();
+        administrativo();
     }
     public static void mostrarPeliculas()   {
         System.out.println("Películas: ");
@@ -211,7 +223,7 @@ public class VideoClub {
             System.out.println(x.toString());
         }
         
-        principal();
+        administrativo();
     }
     public static void mostrarVideojuegos() {
         System.out.println("Videojuegos: ");
@@ -219,15 +231,26 @@ public class VideoClub {
             System.out.println(x.toString());
         }
         
-        principal();
+        administrativo();
     }
     public static void checarEstatusPelicula()  {
+        Pelicula peli;
         in.nextLine();
         System.out.println("¿Cuál es el nombre de la película a buscar?");
         String nombre = in.nextLine();
-        System.out.println(pelicula.status(nombre));
+        peli = pelicula.status(nombre);
+        if(peli != null) {
+            if(peli.getRentado() != '0')    {
+                System.out.println("La película "+peli.getNombre()+" no está disponible");
+            }   else    {
+                System.out.println("La película "+peli.getNombre()+" está disponible");
+            }
+            
+        }   else    {
+            System.out.println("No existe");
+        }
         
-        principal();
+        administrativo();
     }
     public static void checarEstatusVideojuego()    {
         in.nextLine();
@@ -235,17 +258,17 @@ public class VideoClub {
         String nombre = in.nextLine();
         System.out.println(videojuego.status(nombre));
         
-        principal();
+        administrativo();
     }
     public static void mostrarPeliculasRentadas()   {
         System.out.println(pelicula.rentadas());
         
-        principal();
+        administrativo();
     }
     public static void mostrarVideojuegosXbox() {
         System.out.println("Existen " + videojuego.conXbox() + " videojuegos para Xbox");
         
-        principal();
+        administrativo();
     }
     public static String obtenerGenero(int opcion)  {
         String genero = null;

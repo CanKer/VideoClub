@@ -6,6 +6,7 @@
 package videoclub;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 public class Pelicula extends Producto{
 
     private String genero, año;
-    private ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
+    private List<Pelicula> listaPeliculas = new ArrayList<>();
+    
     public Pelicula()   {}
     public Pelicula(String nombre, double costoRenta, char rentado, int dias, String genero, String año)   {
         super(nombre, costoRenta, rentado, dias);
@@ -29,7 +31,6 @@ public class Pelicula extends Producto{
         listaPeliculas.add(new Pelicula("Batman v Superman", 10.30, '0', 2, "Accion", "2016"));
         listaPeliculas.add(new Pelicula("Thor", 10.30, '1', 3, "Accion", "2013"));
     }
-    
     public void agregar(Pelicula p) {
         listaPeliculas.add(p);
     }
@@ -64,11 +65,11 @@ public class Pelicula extends Producto{
         this.año = año;
     }
 
-    public ArrayList<Pelicula> getListaPeliculas() {
+    public List<Pelicula> getListaPeliculas() {
         return listaPeliculas;
     }
 
-    public void setListaPeliculas(ArrayList<Pelicula> listaPeliculas) {
+    public void setListaPeliculas(List<Pelicula> listaPeliculas) {
         this.listaPeliculas = listaPeliculas;
     }
     

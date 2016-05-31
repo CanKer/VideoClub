@@ -36,8 +36,8 @@ public class Producto {
     }
 
 
-    public double getCostoRenta() {
-        return costoRenta;
+    public double getCostoRenta(double dias) {
+        return costoRenta * dias;
     }
 
 
