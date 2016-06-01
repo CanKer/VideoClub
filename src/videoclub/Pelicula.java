@@ -26,9 +26,9 @@ public class Pelicula extends Producto{
     
     public void crearPeliculas()   {
         listaPeliculas.add(new Pelicula("Star Wars", 10.30, '1', 5, "Accion", "2016"));
-        listaPeliculas.add(new Pelicula("Star Trek", 10.30, '0', 7, "Accion", "2016"));
-        listaPeliculas.add(new Pelicula("Captain America", 10.30, '0', 4, "Accion", "2016"));
-        listaPeliculas.add(new Pelicula("Batman v Superman", 10.30, '0', 2, "Accion", "2016"));
+        listaPeliculas.add(new Pelicula("Star Trek", 10.30, '0', 0, "Accion", "2016"));
+        listaPeliculas.add(new Pelicula("Captain America", 10.30, '0', 0, "Accion", "2016"));
+        listaPeliculas.add(new Pelicula("Batman v Superman", 10.30, '0', 0, "Accion", "2016"));
         listaPeliculas.add(new Pelicula("Thor", 10.30, '1', 3, "Accion", "2013"));
     }
     
@@ -37,16 +37,15 @@ public class Pelicula extends Producto{
     }
     
     public Pelicula status(String nombre) {
-        Pelicula respuesta = null;
         
         for(Pelicula pelicula : listaPeliculas) {
             if(pelicula.getNombre().equals(nombre))
 
             if(nombre.equals(pelicula.getNombre()))   {
-                respuesta  = pelicula;
+                return  pelicula;
             } 
         }
-        return respuesta;
+        return null;
     }    
 
     public String getGenero()   {

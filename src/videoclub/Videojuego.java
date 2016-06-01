@@ -37,16 +37,15 @@ public class Videojuego extends Producto{
     }
     
     public Videojuego status(String nombre) {
-        Videojuego respuesta = null;
         
         for(Videojuego videojuego : listaJuegos) {
             if(videojuego.getNombre().equals(nombre))
 
             if(nombre.equals(videojuego.getNombre()))   {
-                respuesta  = videojuego;
+                return videojuego;
             } 
         }
-        return respuesta;
+        return null;
     }
     
     public String getEstilo() {

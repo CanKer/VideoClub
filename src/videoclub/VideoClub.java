@@ -18,10 +18,11 @@ public class VideoClub {
     static Pelicula pelicula = new Pelicula();
 
     public static void main(String[] args) {
-
+        
         pelicula.crearPeliculas();          //Creamos películas muestra
         videojuego.crearVideojuegos();      //Creamos videojuegos muestra
         principal();
+        
     }
 
     public static void listaPrincipal() {
@@ -62,6 +63,7 @@ public class VideoClub {
     }
 
     public static void listaProductos() {
+        System.out.println("¿Qué desea agregar?");
         System.out.println("1) Videojuegos");
         System.out.println("2) Películas");
     }
@@ -91,6 +93,7 @@ public class VideoClub {
     }
 
     public static void rentarProductos() {
+        in.nextLine();
         System.out.println("¿Qué desea rentar?");
         listaProductos();
         while (!in.hasNextInt()) {
@@ -116,15 +119,15 @@ public class VideoClub {
 
     public static void listaAdministrativo() {
         System.out.println("Indique el código de su consulta. Solo se tomará en cuenta el primer dígito");
-        System.out.println("T/t: Desplegar todos los productos:");
-        System.out.println("P/p: Desplegar todas las películas");
-        System.out.println("V/v: Desplegar todos los videojuegos");
-        System.out.println("S/s: Checar estatus de película");
-        System.out.println("J/j: Checar estatus de videojuego");
-        System.out.println("C/c: Mostrar cantidad de películas rentadas");
-        System.out.println("X/x: Mostrar cantidad de videojuegos para Xbox");
-        System.out.println("R/r: Regresar al menú principal");
-        System.out.println("U/u: Terminar programa");
+        System.out.println("T) Desplegar todos los productos:");
+        System.out.println("P) Desplegar todas las películas");
+        System.out.println("V) Desplegar todos los videojuegos");
+        System.out.println("S) Checar estatus de película");
+        System.out.println("J) Checar estatus de videojuego");
+        System.out.println("C) Mostrar cantidad de películas rentadas");
+        System.out.println("X) Mostrar cantidad de videojuegos para Xbox");
+        System.out.println("R) Regresar al menú principal");
+        System.out.println("U) Terminar programa");
     }
 
     public static void administrativo() {
@@ -178,8 +181,9 @@ public class VideoClub {
         int cantidad = in.nextInt();
         for (int i = 1; i <= cantidad; i++) {
             System.out.println(producto + ": " + i);
+            in.nextLine();
             System.out.println("¿Cómo se llama?");
-            String nombre = in.next();
+            String nombre = in.nextLine();
             System.out.println("¿Qué precio tendrá?");
             double costoRenta = in.nextDouble();
             if (producto.equals("pelicula")) {
@@ -191,7 +195,7 @@ public class VideoClub {
                 System.out.println("¿De qué año es?");
                 String año = in.next();
 
-                System.out.println(nombre + costoRenta + genero + año);
+                System.out.println(nombre + " "+costoRenta+ " " +genero+" "+año);
 
                 pelicula.agregar(new Pelicula(nombre, costoRenta, '0', 0, genero, año));
             } else if (producto.equals("videojuego")) {
@@ -206,7 +210,7 @@ public class VideoClub {
                 } while (plataforma == null);
 
                 System.out.println(nombre + " " + costoRenta + " " + estilo + " " + plataforma);
-                videojuego.agregar(new Videojuego(nombre, costoRenta, '1', 0, estilo, plataforma));
+                videojuego.agregar(new Videojuego(nombre, costoRenta, '0', 0, estilo, plataforma));
             }
 
         }
@@ -324,7 +328,7 @@ public class VideoClub {
     }
 
     public static void mostrarPeliculasRentadas() {
-        System.out.println("Existen" + pelicula.rentadas() + " películas rentadas");
+        System.out.println("Existen " + pelicula.rentadas() + " películas rentadas");
 
         administrativo();
     }
